@@ -13,20 +13,32 @@ class Home extends HTMLElement {
     });
 
     this.container = document.createElement("div");
-    this.container.className = "line-break"
+    this.container.className = "line-break";
     this.shadowRoot.appendChild(this.container);
   }
 
   connectedCallback() {
-    this.render()
+    this.render();
   }
 
   render() {
-    /* html */ 
+    /* html */
     this.container.innerHTML = `
-      <h1 class="title">JS Vanilla + Vite Boilerplate</h1>
-      <p>Home Page</p>
-    `
+      <h1>Boilerplate</h1>
+      <div>
+        <ul>
+          <li>
+            <p>• JS Vanilla</p>
+          </li>
+          <li>
+            <p>• Vite</p>
+          </li>
+          <li>
+            <p>• Web Components</p>
+          </li>
+        </ul>
+      <div>
+    `;
   }
 }
 

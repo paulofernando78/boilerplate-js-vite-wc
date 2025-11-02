@@ -27,7 +27,6 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: var(--header);
 }
 
 .header-logo {
@@ -47,10 +46,10 @@ nav.visible {
 }
 
 main {
-  height: calc(100dvh - var(--header));
   border: 1px solid var(--gray-4);
-  padding: var(--padding);
+  padding: 0 5px 2px 5px;
   border-radius: var(--border-radius);
+  height: 100%;
 }
 
 @media (max-width: 700px) {
