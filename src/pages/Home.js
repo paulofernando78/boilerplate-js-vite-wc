@@ -21,11 +21,7 @@ class Home extends HTMLElement {
   render() {
     /* html */
     this.container.innerHTML = `
-      <h1>ABC</h1>
       <h1>Boilerplate</h1>
-      <h1>Boilerplate</h1>
-      <h1>ABCDEFHIJKLMNOPQRSTUWXYZ</h1>
-      <h1>abcdefhiklmnopqrstuwxyz</h1>
       <div>
         <ul>
           <li>• JS Vanilla</li>
