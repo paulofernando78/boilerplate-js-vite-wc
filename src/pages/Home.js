@@ -1,16 +1,13 @@
-import styleImports from "@css/imports.css?inline";
-import styleHome from "@css/pages/home.css?inline";
+import styleImports from "@css/styles.css?inline";
 
 class Home extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
 
-    [styleImports, styleHome].forEach((imports) => {
       const style = document.createElement("style");
-      style.textContent = imports;
+      style.textContent = styleImports;
       this.shadowRoot.appendChild(style);
-    });
 
     this.container = document.createElement("div");
     this.container.className = "line-break";
@@ -27,15 +24,9 @@ class Home extends HTMLElement {
       <h1>Boilerplate</h1>
       <div>
         <ul>
-          <li>
-            <p>• JS Vanilla</p>
-          </li>
-          <li>
-            <p>• Vite</p>
-          </li>
-          <li>
-            <p>• Web Components</p>
-          </li>
+          <li>• JS Vanilla</li>
+          <li>• Vite</li>
+          <li>• Web Components</li>
         </ul>
       <div>
     `;

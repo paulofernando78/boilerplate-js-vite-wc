@@ -1,89 +1,14 @@
-@import "@css/imports.css";
-:root {
-  --border-radius: 5px;
-  --header: max-content
-}
+@import "@css/global.css"; 
 
-body {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: var(--padding);
-  background-color: var(--background-color, #fff);
-  /* Grid Areas */
-  display: grid;
-  grid-template-areas:
-    "header header"
-    "nav main"
-    "nav footer"
-    ;
-  grid-template-rows: auto 1fr;
-  grid-template-columns: auto 1fr;
-  gap: 5px;
-  height: 100dvh;
-}
+@import "@css/imports/reset.css";
+@import "@css/imports/typography.css";
+@import "@css/imports/colors.css";
 
-header {
-  grid-area: header;
-  border: 1px solid var(--gray-4);
-  border-radius: var(--border-radius);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+/* Components */
+@import "@css/imports/components/atoms/button.css";
 
-.header-logo {
-  line-height: 1;
-}
-
-nav {
-  grid-area: nav;
-  border: 1px solid var(--gray-4);
-  padding: var(--padding);
-  border-radius: var(--border-radius);
-  width: 100px;
-}
-
-nav.visible {
-  display: block;
-}
-
-main {
-  border: 1px solid var(--gray-4);
-  padding: 0 5px 2px 5px;
-  border-radius: var(--border-radius);
-}
-
-footer {
-  grid-area: footer;
-  border: 1px solid var(--gray-4);
-  padding: var(--padding);
-  border-radius: var(--border-radius);
-  text-align: center;
-}
-
-@media (max-width: 700px) {
-  body {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto 1fr auto auto;
-    grid-template-areas:
-      "header"
-      "nav"
-      "main"
-      "footer";
-  }
-
-  nav {
-    display: none;
-    width: 100%;
-  }
-}
-
-@media (min-width: 700px) {
-  #menu {
-    display: none;
-  }
-
-  .header-logo {
-    padding-left: 5px;
-  }
-}
+/* Pages */
+@import "@css/imports/pages/404.css";
+@import "@css/imports/pages/home.css";
+@import "@css/imports/pages/about.css";
+@import "@css/imports/pages/contact.css"

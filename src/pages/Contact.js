@@ -1,16 +1,13 @@
-import styleImports from "@css/imports.css?inline";
-import styleContact from "@css/pages/contact.css?inline";
+import styleImports from "@css/styles.css?inline";
 
 class Contact extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
 
-    [styleImports, styleContact].forEach((imports) => {
-      const style = document.createElement("style");
-      style.textContent = imports;
-      this.shadowRoot.appendChild(style);
-    });
+    const style = document.createElement("style");
+    style.textContent = styleImports;
+    this.shadowRoot.appendChild(style);
 
     this.container = document.createElement("div");
     this.container.className = "line-break";

@@ -1,16 +1,13 @@
-import styleImports from "@css/imports.css?inline";
-import styleAbout from "@css/pages/about.css?inline";
+import styleImports from "@css/styles.css?inline";
 
 class About extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
 
-    [styleImports, styleAbout].forEach((imports) => {
       const style = document.createElement("style");
-      style.textContent = imports;
+      style.textContent = styleImports;
       this.shadowRoot.appendChild(style);
-    });
 
     this.container = document.createElement("div");
     this.container.className = "line-break"

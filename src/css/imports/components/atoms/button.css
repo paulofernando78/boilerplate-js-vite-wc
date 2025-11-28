@@ -1,11 +1,14 @@
 :host {
   display: inline-block;
-  line-height: 0;
 }
 
 :host([icon="darkMode"]) svg,
 :host([icon="lightMode"]) svg {
   animation: fadeIn 0.4s;
+}
+
+:host(:not([icon="lightMode"])) {
+  filter: invert(var(--icon-invert));
 }
 
 button {

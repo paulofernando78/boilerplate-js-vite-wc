@@ -1,5 +1,4 @@
-import styleImports from "@css/imports.css?inline";
-import styleButton from "@css/components/button.css?inline";
+import styleImports from "@css/styles.css?inline";
 import { menu, lightMode, darkMode } from "../../../assets/images/svg-imports";
 
 class Button extends HTMLElement {
@@ -11,11 +10,9 @@ class Button extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
 
-    [styleImports, styleButton].forEach((imports) => {
       const style = document.createElement("style");
-      style.textContent = imports;
+      style.textContent = styleImports;
       this.shadowRoot.appendChild(style);
-    });
 
     this.button = document.createElement("button");
     this.shadowRoot.appendChild(this.button);
