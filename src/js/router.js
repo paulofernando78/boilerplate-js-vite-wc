@@ -7,13 +7,6 @@ const routes = {
   "/contact": "wc-contact",
 };
 
-// 👇 Used for navigation without page reload
-export function navigateTo(path) {
-  // Updates the browser's URL (History API)
-  window.history.pushState({}, "", path);
-  renderRoute();
-}
-
 // 👇 Decides which component to render based on the current URL
 export function renderRoute() {
   const app = document.querySelector("#app"); // Main container
@@ -24,6 +17,13 @@ export function renderRoute() {
 
   // Injects the selected Web Component into the DOM
   app.innerHTML = `<${tagName}></${tagName}>`;
+}
+
+// 👇 Used for navigation without page reload
+export function navigateTo(path) {
+  // Updates the browser's URL (History API)
+  window.history.pushState({}, "", path);
+  renderRoute();
 }
 
 // 👇 Handles browser navigation (Back/Forward buttons)

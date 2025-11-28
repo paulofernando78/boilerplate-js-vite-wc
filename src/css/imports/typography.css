@@ -22,6 +22,29 @@ h6 {
   font-size: 1rem;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+li {
+  /* border: 1px solid red; */
+  /* text-box-trim: trim-both; */
+  /* text-box-edge: cap alphabetic; */
+  text-box: trim-both cap alphabetic;
+  padding-top: 0.1rem;
+
+  overflow-wrap: anywhere;
+  text-wrap: pretty;
+}
+
+li:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
 a {
   color: var(--blue-6);
   text-decoration: none;
