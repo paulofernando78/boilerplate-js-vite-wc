@@ -7,8 +7,13 @@
   animation: fadeIn 0.4s;
 }
 
-:host(:not([icon="lightMode"])) {
+/* :host(:not([icon="lightMode"])) svg {
   filter: invert(var(--icon-invert));
+} */
+
+:host([icon="lightMode"]) svg {
+  filter: none;
+  fill: var(--yellow-3);
 }
 
 button {
