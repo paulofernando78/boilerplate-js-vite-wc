@@ -28,3 +28,5 @@ class FourOhFour extends HTMLElement {
 }
 
 export default FourOhFour;
+
+customElements.define("wc-404", FourOhFour)

@@ -24,3 +24,5 @@ class About extends HTMLElement {
 }
 
 export default About;
+
+customElements.define("wc-about", About)

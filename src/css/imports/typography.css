@@ -45,12 +45,11 @@ li:not(:last-child) {
 }
 
 a {
-  color: var(--blue-6);
+  color: var(--slate-5);
   text-decoration: none;
   transition: color 0.2s ease;
 }
 
 a:hover {
-  color: var(--blue-4);
-  text-decoration: underline;
+  color: var(--slate-4);
 }

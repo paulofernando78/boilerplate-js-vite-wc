@@ -31,3 +31,5 @@ class Home extends HTMLElement {
 }
 
 export default Home;
+
+customElements.define("wc-home", Home)

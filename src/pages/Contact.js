@@ -22,3 +22,5 @@ class Contact extends HTMLElement {
 }
 
 export default Contact;
+
+customElements.define("wc-contact", Contact)

@@ -1,25 +1,30 @@
-// 👇 Define all available routes in your SPA
-// If the user navigates to a path not listed here, it will fall back to "wc-404"
 const routes = {
-  404: "wc-404", // Fallback component for invalid routes
+  404: "wc-404",
   "/": "wc-home",
   "/about": "wc-about",
   "/contact": "wc-contact",
 };
 
-// 👇 Decides which component to render based on the current URL
-export function renderRoute() {
-  const app = document.querySelector("#app"); // Main container
-  const path = window.location.pathname; // Current route path
+const componentImport = {
+  "/": () => import("../pages/Home.js"),
+  "/about": () => import("../pages/About.js"),
+  "/contact": () => import("../pages/Contact.js"),
+  404: () => import("../pages/404.js"),
+};
 
-  // If path doesn't exist in routes, use wc-404 as fallback
+let currentPath = null;
+
+export async function renderRoute() {
+  const app = document.querySelector("#app");
+  const path = window.location.pathname; // Current route path
+  if (path === currentPath) return;
+  currentPath = path;
+  await (componentImport[path] || componentImport[404])();
   const tagName = routes[path] || "wc-404";
 
-  // Injects the selected Web Component into the DOM
-  // app.innerHTML = `<${tagName}></${tagName}>`;
   app.innerHTML = "";
-  const element = document.createElement(tagName)
-  app.appendChild(element)
+  const element = document.createElement(tagName);
+  app.replaceChildren(element);
 }
 
 // 👇 Used for navigation without page reload
