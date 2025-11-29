@@ -16,7 +16,10 @@ export function renderRoute() {
   const tagName = routes[path] || "wc-404";
 
   // Injects the selected Web Component into the DOM
-  app.innerHTML = `<${tagName}></${tagName}>`;
+  // app.innerHTML = `<${tagName}></${tagName}>`;
+  app.innerHTML = "";
+  const element = document.createElement(tagName)
+  app.appendChild(element)
 }
 
 // 👇 Used for navigation without page reload

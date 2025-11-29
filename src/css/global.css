@@ -2,7 +2,8 @@
   --header: max-content;
 
   /* Light Mode */
-  --background-color: #e0e0e0;
+  --background-color: #E8E8F3
+;
   --text-color: #000;
   --icon-invert: 0;
 
@@ -53,16 +54,23 @@ header {
   line-height: 1;
 }
 
+nav.visible {
+  display: block;
+}
+
 nav {
   grid-area: nav;
   border: 1px solid var(--gray-4);
   padding: var(--padding);
   border-radius: var(--border-radius);
   width: 120px;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.3rem;
 }
 
-nav.visible {
-  display: block;
+nav li {
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 main {
