@@ -41,7 +41,6 @@ body {
   margin: 0 auto;
   padding: var(--padding);
   background-color: var(--background-color, #fff);
-
 }
 
 .layout {
@@ -95,9 +94,6 @@ nav li {
   text-transform: uppercase;
 }
 
-nav a[aria-current="page"] {
-  color: var(--slate-7);
-}
 
 li:not(:last-child) {
   margin-bottom: 0.5rem;
@@ -109,9 +105,8 @@ a {
   transition: color 0.2s ease;
 }
 
-a:hover {
-  /* text-decoration: underline; */
-  /* color: var(--slate-3); */
+nav a[aria-current="page"] {
+  color: var(--slate-7);
 }
 
 footer {
@@ -133,7 +128,7 @@ svg {
 }
 
 @media (max-width: 700px) {
-  body {
+  .layout {
     display: flex;
     flex-direction: column;
   }
