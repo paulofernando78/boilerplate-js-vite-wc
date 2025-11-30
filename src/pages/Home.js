@@ -16,6 +16,7 @@ class Home extends HTMLElement {
       <style>${styleImports}</style>
       <section class="line-break">
         <h1 class="page">Boilerplate</h1>
+        <p><b>CSR</b> (Client Side Rendering)</p>
         <div>
           <ul>
             <li>• JS Vanilla</li>
@@ -23,7 +24,6 @@ class Home extends HTMLElement {
             <li>• Web Components</li>
           </ul>
         </div>
-        <p>CSR - Client Side Rendering</p>
       </section>
     `;
   }

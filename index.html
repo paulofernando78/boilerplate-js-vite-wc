@@ -3,26 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="CSR (Client-Side-Rendering) Web App.">
+    <link rel="preload" href="./src/css/styles.css" as="style" />
     <link rel="stylesheet" href="./src/css/styles.css" />
     <script type="module" src="./src/js/main.js" defer></script>
     <title>Boilerplate</title>
   </head>
   <body>
-    <header>
-      <wc-button icon="menu" id="menu"></wc-button>
-      <a href="/" class="header-logo" data-link="">LOGO</a>
-      <wc-button icon="darkMode"></wc-button>
-    </header>
-    <nav>
-      <ul>
-        <li><a href="/" data-link>Home</a></li>
-        <li><a href="/about" data-link>About</a></li>
-        <li><a href="/contact" data-link>Contact</a></li>
-      </ul>
-    </nav>
-    <main id="app"></main>
-    <footer>
-      <small>Copyright © 2025 ... Inc. All rights reserved.</small>
-    </footer>
+    <div class="layout">
+      <header>
+        <wc-button icon="menu" id="menu"></wc-button>
+        <a href="/" class="header-logo">LOGO</a>
+        <wc-button icon="darkMode"></wc-button>
+      </header>
+      <nav aria-label="Main navigation">
+        <ul>
+          <li><a href="/" data-link>Home</a></li>
+          <li><a href="/about" data-link>About</a></li>
+          <li><a href="/contact" data-link>Contact</a></li>
+        </ul>
+      </nav>
+      <main id="app"></main>
+      <footer>
+        <small>Copyright © 2025 ... Inc. All rights reserved.</small>
+      </footer>
+    </div>
   </body>
 </html>

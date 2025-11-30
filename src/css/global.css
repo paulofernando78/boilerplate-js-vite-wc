@@ -42,7 +42,9 @@ body {
   padding: var(--padding);
   background-color: var(--background-color, #fff);
 
-  /* Grid Areas */
+}
+
+.layout {
   display: grid;
   grid-template-areas:
     "header header"
@@ -82,15 +84,34 @@ nav {
   overflow-y: auto;
 }
 
+main {
+  border: 1px solid var(--gray-4);
+  padding: 0.3125rem;
+  border-radius: var(--border-radius);
+}
+
 nav li {
   font-weight: bold;
   text-transform: uppercase;
 }
 
-main {
-  border: 1px solid var(--gray-4);
-  padding: 0.3125rem;
-  border-radius: var(--border-radius);
+nav a[aria-current="page"] {
+  color: var(--slate-7);
+}
+
+li:not(:last-child) {
+  margin-bottom: 0.5rem;
+}
+
+a {
+  color: var(--slate-4);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  /* text-decoration: underline; */
+  /* color: var(--slate-3); */
 }
 
 footer {

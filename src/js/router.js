@@ -46,6 +46,18 @@ let currentPath = null;
  */
 let renderToken = 0;
 
+function updateAriaCurrent() {
+  const links = document.querySelectorAll("a[data-link]");
+
+  links.forEach((link) => {
+    if (link.getAttribute("href") === window.location.pathname) {
+      link.setAttribute("aria-current", "page");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+}
+
 /*
  * renderRoute()
  * Main router function responsible for:
@@ -94,6 +106,8 @@ export async function renderRoute() {
   const element = document.createElement(tag);
   app.replaceChildren(element);
 
+  updateAriaCurrent();
+
   // Begin FADE-IN animation after the new page is rendered
   requestAnimationFrame(() => {
     app.classList.remove("fade");
@@ -119,7 +133,7 @@ function prefetch(path) {
   });
 }
 
- // Desktop prefetch: preload route module when mouse hovers a link
+// Desktop prefetch: preload route module when mouse hovers a link
 document.addEventListener(
   "mouseenter",
   (e) => {
@@ -130,7 +144,7 @@ document.addEventListener(
   true // capture
 );
 
- // Keyboard/mobile accessibility prefetch: triggers on focus
+// Keyboard/mobile accessibility prefetch: triggers on focus
 document.addEventListener("focusin", (e) => {
   if (!(e.target instanceof Element)) return;
   const link = e.target.closest("[data-link]");
@@ -148,5 +162,5 @@ export function navigateTo(path) {
   renderRoute();
 }
 
- // Handle browser Back/Forward — re-renders route on history change
+// Handle browser Back/Forward — re-renders route on history change
 window.addEventListener("popstate", renderRoute);

@@ -39,17 +39,3 @@ li {
   overflow-wrap: anywhere;
   text-wrap: pretty;
 }
-
-li:not(:last-child) {
-  margin-bottom: 0.5rem;
-}
-
-a {
-  color: var(--slate-5);
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-a:hover {
-  color: var(--slate-4);
-}
