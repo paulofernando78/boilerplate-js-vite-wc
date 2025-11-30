@@ -23,8 +23,13 @@
 }
 
 #app {
+  overflow-y: auto;
+}
+
+#app {
   opacity: 1;
-  transition: opacity 0.1s ease;
+  transition: opacity 0.25s ease;
+  will-change: opacity;
 }
 
 #app.fade {
@@ -74,6 +79,7 @@ nav {
   width: 120px;
   font-family: "Bebas Neue", sans-serif;
   font-size: 1.3rem;
+  overflow-y: auto;
 }
 
 nav li {

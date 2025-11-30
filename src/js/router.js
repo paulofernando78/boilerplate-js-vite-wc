@@ -6,6 +6,12 @@
 // 6. navigateTo()
 // 7. popstate listener
 
+/*
+ * ROUTE TABLE
+ * Maps URL paths to their corresponding Web Component tag
+ * and a loader function that dynamically imports the page module.
+ * This enables code-splitting and lazy loading.
+ */
 const routes = {
   "/": {
     tag: "wc-home",
@@ -25,40 +31,80 @@ const routes = {
   },
 };
 
+/*
+ * currentPath
+ * Tracks the currently-rendered route so we don't re-render
+ * the same page unnecessarily.
+ */
 let currentPath = null;
+
+/*
+ * renderToken
+ * Incremented on each navigation.
+ * Used to prevent race conditions when multiple imports compete:
+ * only the latest navigation should render.
+ */
 let renderToken = 0;
 
+/*
+ * renderRoute()
+ * Main router function responsible for:
+ * 1. Detecting the current path
+ * 2. Matching it to a route
+ * 3. Running fade-out transition
+ * 4. Dynamically importing the page module
+ * 5. Rendering the new Web Component
+ * 6. Running fade-in transition
+ */
 export async function renderRoute() {
+  // Read the current browser path (e.g. "/about")
   const app = document.querySelector("#app");
   let path = window.location.pathname; // Current route path
   path = path.toLowerCase();
 
+  // If the path does not exist in our route table, fallback to 404
   if (!routes[path]) path = 404;
+
+  // Optimization: avoid re-rendering if the user is already on this route
   if (path === currentPath) return;
   currentPath = path;
 
+  // Extract the Web Component tag and the loader function for this route
   const { tag, load } = routes[path];
 
-  // TOKEN PARA EVITAR RACE CONDITION
+  // Increase token to invalidate older navigations (race condition protection)
   const token = ++renderToken;
 
-  app.classList.add("fade");
-  await new Promise((resolve) => setTimeout(resolve, 100));
+  const FADE_DURATION = 250;
 
+  // Start FADE-OUT animation by adding the CSS class
+  app.classList.add("fade");
+
+  // Wait a short duration to let fade-out visually occur before loading new page
+  await new Promise((resolve) => setTimeout(resolve, FADE_DURATION));
+
+  // Dynamically import the page module (code-splitting)
+  // This may briefly block the event loop
   await load();
 
-  // CANCELA SE OUTRA ROTA FOI CLICADA DURANTE O IMPORT
+  // If the user navigated again during import, cancel this render
   if (token !== renderToken) return;
 
+  // Create the new page's Web Component and replace the #app content
   const element = document.createElement(tag);
   app.replaceChildren(element);
 
+  // Begin FADE-IN animation after the new page is rendered
   requestAnimationFrame(() => {
     app.classList.remove("fade");
   });
 }
 
-// Pre-fetch
+/*
+ * PREFETCH SYSTEM
+ * When the user hovers or focuses on a link, we proactively
+ * preload the module for that route. This makes navigation faster.
+ */
 const prefetchRoutes = new Set();
 
 function prefetch(path) {
@@ -73,7 +119,7 @@ function prefetch(path) {
   });
 }
 
-// Prefetch via mouse (Desktop)
+ // Desktop prefetch: preload route module when mouse hovers a link
 document.addEventListener(
   "mouseenter",
   (e) => {
@@ -84,19 +130,23 @@ document.addEventListener(
   true // capture
 );
 
-// Prefetch via keyboard focus (A11Y + mobile)
+ // Keyboard/mobile accessibility prefetch: triggers on focus
 document.addEventListener("focusin", (e) => {
   if (!(e.target instanceof Element)) return;
   const link = e.target.closest("[data-link]");
   if (link) prefetch(link.getAttribute("href"));
 });
 
-// Used for navigation without page reload
+/*
+ * navigateTo(path)
+ * Pushes a new URL to the history and calls renderRoute()
+ * Allows internal navigation without full page reloads.
+ */
 export function navigateTo(path) {
   // Updates the browser's URL (History API)
   window.history.pushState({}, "", path);
   renderRoute();
 }
 
-// Handles browser navigation (Back/Forward buttons)
+ // Handle browser Back/Forward — re-renders route on history change
 window.addEventListener("popstate", renderRoute);
