@@ -48,9 +48,9 @@ body {
   grid-template-areas:
     "header header"
     "nav main"
-    "nav footer";
-  grid-template-rows: auto 1fr;
-  grid-template-columns: auto 1fr;
+    "footer footer";
+    grid-template-columns: auto 1fr;
+  grid-template-rows: auto 1fr auto;
   gap: 5px;
   height: 100dvh;
 }
@@ -66,10 +66,6 @@ header {
 
 .header-logo {
   line-height: 1;
-}
-
-nav.visible {
-  display: block;
 }
 
 nav {
@@ -134,8 +130,19 @@ svg {
   }
 
   nav {
-    display: none;
-    width: 100%;
+    position: absolute;
+    top: 46px;
+    left: 5px;
+    width: 200px;
+    background-color: #E8E8F3;
+    z-index: 1;
+
+    transform: translateX(-220px);
+    transition: transform 0.7s ease;
+  }
+  
+  nav.visible {
+    transform: translateX(0);
   }
 
   main {

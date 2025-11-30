@@ -1,4 +1,4 @@
-// 1. rotas
+// 1. routes
 // 2. currentPath
 // 3. renderToken
 // 4. renderRoute()
@@ -33,8 +33,7 @@ const routes = {
 
 /*
  * currentPath
- * Tracks the currently-rendered route so we don't re-render
- * the same page unnecessarily.
+ * Tracks the currently-rendered route so we don't re-render the same page unnecessarily.
  */
 let currentPath = null;
 
@@ -105,8 +104,8 @@ export async function renderRoute() {
   // Create the new page's Web Component and replace the #app content
   const element = document.createElement(tag);
   app.replaceChildren(element);
-
   updateAriaCurrent();
+  window.scrollTo({ top: 0, behavior: "smooth" });
 
   // Begin FADE-IN animation after the new page is rendered
   requestAnimationFrame(() => {
