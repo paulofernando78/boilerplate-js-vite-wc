@@ -23,13 +23,10 @@
 }
 
 #app {
-  overflow-y: auto;
-}
-
-#app {
   opacity: 1;
   transition: opacity 0.25s ease;
   will-change: opacity;
+  overflow-y: auto;
 }
 
 #app.fade {
@@ -46,10 +43,10 @@ body {
 .layout {
   display: grid;
   grid-template-areas:
-    "header header"
-    "nav main"
-    "footer footer";
-    grid-template-columns: auto 1fr;
+  "header header"
+  "nav main"
+  "footer footer";
+  grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr auto;
   gap: 5px;
   height: 100dvh;
@@ -80,6 +77,7 @@ nav {
 }
 
 main {
+  grid-area: main;
   border: 1px solid var(--gray-4);
   padding: 0.3125rem;
   border-radius: var(--border-radius);
@@ -89,7 +87,6 @@ nav li {
   font-weight: bold;
   text-transform: uppercase;
 }
-
 
 li:not(:last-child) {
   margin-bottom: 0.5rem;
@@ -129,19 +126,25 @@ svg {
     flex-direction: column;
   }
 
+  main {
+    /* transform: translateX(-124px); */
+    transition: transform 0.7s ease;
+  }
+
   nav {
     position: absolute;
     top: 46px;
     left: 5px;
-    width: 200px;
-    background-color: #E8E8F3;
+    width: 120px;
+    height: 100dvh;
+    background-color: #e8e8f3;
     z-index: 1;
 
     transform: translateX(-220px);
     transition: transform 0.7s ease;
   }
-  
-  nav.visible {
+
+   nav.visible {
     transform: translateX(0);
   }
 
