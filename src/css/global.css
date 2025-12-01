@@ -31,9 +31,9 @@ body {
 .layout {
   display: grid;
   grid-template-areas:
-  "header header"
-  "nav main"
-  "footer footer";
+    "header header"
+    "nav main"
+    "footer footer";
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr auto;
   gap: 5px;
@@ -69,7 +69,6 @@ nav li {
   font-weight: bold;
   text-transform: uppercase;
 }
-
 
 li:not(:last-child) {
   margin-bottom: 0.5rem;
@@ -134,20 +133,24 @@ svg {
     position: absolute;
     top: 46px;
     left: 5px;
-    width: 200px;
-    background-color: #E8E8F3;
+    background-color: #e8e8f3;
     z-index: 1;
 
     transform: translateX(-220px);
     transition: transform 1s ease;
   }
-  
+
   nav.visible {
     transform: translateX(0);
   }
 
   main {
-    flex-grow: 1;
+    margin-left: 125px;
+  }
+  
+  main.shifted {
+    transition: margin-left 0.7s ease;
+    margin-left: 0;
   }
 }
 

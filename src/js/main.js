@@ -5,20 +5,6 @@ import "@css/styles.css";
 import Button from "./components/atoms/Button";
 customElements.define("wc-button", Button);
 
-const menuBtn = document.querySelector("wc-button[icon='menu']");
-const nav = document.querySelector("nav");
-const navLinks = document.querySelectorAll("nav li a");
-
-menuBtn.addEventListener("nav-click", () => {
-  nav.classList.toggle("visible");
-});
-
-navLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    nav.classList.remove("visible");
-  });
-});
-
 // Dark Mode
 const darkModeBtn = document.querySelector("wc-button[icon='darkMode']");
 
@@ -34,4 +20,34 @@ darkModeBtn.addEventListener("click", () => {
   );
 });
 
+const menuBtn = document.querySelector("wc-button[icon='menu']");
+const nav = document.querySelector("nav");
+const navLinks = document.querySelectorAll("nav li a");
 
+menuBtn.addEventListener("nav-click", () => {
+  nav.classList.toggle("visible");
+});
+
+navLinks.forEach((link) => {
+  link.addEventListener("click", () => {
+    nav.classList.remove("visible");
+  });
+});
+
+//Break point < 700px
+
+const main = document.querySelector("main");
+
+const mq = window.matchMedia("(max-width: 700px)");
+
+function handleBreakpoint(e) {
+  if (e.matches) {
+    main.classList.add("shifted");
+  } else {
+    main.classList.remove("shifted");
+  }
+}
+
+mq.addEventListener("change", handleBreakpoint);
+
+handleBreakpoint(mq);
