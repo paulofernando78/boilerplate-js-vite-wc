@@ -29,6 +29,7 @@ menuBtn.addEventListener("nav-click", () => {
 
   if (nav.classList.contains("visible")) {
     layout.classList.remove("no-gap");
+    nav.classList.add("absolute")
   } else {
     setTimeout(() => {
       layout.classList.add("no-gap");
@@ -60,6 +61,7 @@ function handleBreakpoint(e) {
   } else {
     setTimeout(() => {
       layout.classList.remove("no-gap");
+      nav.classList.remove("absolute")
       document.body.classList.remove("mobile");
     }, 0);
   }

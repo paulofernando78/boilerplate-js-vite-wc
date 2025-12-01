@@ -155,6 +155,11 @@ svg {
   nav {
     height: 89.7dvh;
   }
+  
+  nav.absolute {
+    position: absolute;
+    top: 46.2px;
+  }
 
   body.mobile nav.visible {
     margin-left: 0;
