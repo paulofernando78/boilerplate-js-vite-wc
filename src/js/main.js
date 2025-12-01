@@ -35,19 +35,18 @@ navLinks.forEach((link) => {
 });
 
 //Break point < 700px
-
 const main = document.querySelector("main");
-
 const mq = window.matchMedia("(max-width: 700px)");
 
 function handleBreakpoint(e) {
   if (e.matches) {
-    main.classList.add("shifted");
+    requestAnimationFrame(() => {
+      main.classList.add("shifted");
+    })
   } else {
     main.classList.remove("shifted");
   }
 }
 
 mq.addEventListener("change", handleBreakpoint);
-
 handleBreakpoint(mq);
