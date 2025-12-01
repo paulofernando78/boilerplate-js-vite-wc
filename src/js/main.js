@@ -33,3 +33,5 @@ darkModeBtn.addEventListener("click", () => {
     newTheme === "dark" ? "lightMode" : "darkMode"
   );
 });
+
+
