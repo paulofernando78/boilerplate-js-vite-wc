@@ -91,6 +91,7 @@ main {
   padding: 0.3125rem;
   border-radius: var(--border-radius);
   overflow-y: auto;
+  margin-left: 0px;
 }
 
 #app {
@@ -124,20 +125,12 @@ svg {
 }
 
 @media (max-width: 700px) {
-  .layout {
-    display: flex;
-    flex-direction: column;
-  }
-
   nav {
-    position: absolute;
-    top: 46px;
-    left: 5px;
     background-color: #e8e8f3;
     z-index: 1;
 
     transform: translateX(-220px);
-    transition: transform 1s;
+    transition: transform 1s ease;
 
     height: 89.7dvh;
   }
@@ -147,12 +140,12 @@ svg {
   }
 
   main {
-    margin-left: 125px;
-  }
-  
-  main.shifted {
-    transition: margin-left 0.65s ease;
-    margin-left: 0;
+    margin-left: -125px;
+    transition: margin-left 1s ease;
+    
+    /* transform: translateX(-125px);
+    transition: transform 1s ease;
+    margin-right: -125px; */
   }
 }
 
@@ -165,7 +158,11 @@ svg {
     padding-left: 5px;
   }
 
-  nav.visible {
+  nav {
     transform: translateX(0);
+  }
+
+  main {
+    margin-left: 0;
   }
 }

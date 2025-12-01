@@ -34,19 +34,5 @@ navLinks.forEach((link) => {
   });
 });
 
-//Break point < 700px
-const main = document.querySelector("main");
-const mq = window.matchMedia("(max-width: 700px)");
+// Breakpoint animation
 
-function handleBreakpoint(e) {
-  if (e.matches) {
-    requestAnimationFrame(() => {
-      main.classList.add("shifted");
-    })
-  } else {
-    main.classList.remove("shifted");
-  }
-}
-
-mq.addEventListener("change", handleBreakpoint);
-handleBreakpoint(mq);
