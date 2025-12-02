@@ -28,10 +28,10 @@ menuBtn.addEventListener("nav-click", () => {
   nav.classList.toggle("visible");
 });
 
-navLinks.forEach((link) => {
-  link.addEventListener("click", () => {
+nav.addEventListener("click", (e) => {
+  if (e.target.tagName === "A") {
     nav.classList.remove("visible");
-  });
+  }
 });
 
 // Breakpoint animation
