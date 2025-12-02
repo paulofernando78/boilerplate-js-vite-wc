@@ -26,44 +26,24 @@ const navLinks = document.querySelectorAll("nav li a");
 
 menuBtn.addEventListener("nav-click", () => {
   nav.classList.toggle("visible");
-
-  if (nav.classList.contains("visible")) {
-    layout.classList.remove("no-gap");
-    nav.classList.add("absolute")
-  } else {
-    setTimeout(() => {
-      layout.classList.add("no-gap");
-    }, 450);
-  }
 });
 
 navLinks.forEach((link) => {
   link.addEventListener("click", () => {
     nav.classList.remove("visible");
-    layout.cl;
   });
 });
 
 // Breakpoint animation
-
-const mq = window.matchMedia("(max-width: 701px)");
+const mq = window.matchMedia("(max-width: 700px)");
 const layout = document.querySelector(".layout");
 
 function handleBreakpoint(e) {
   if (e.matches) {
     document.body.classList.add("mobile");
-
     nav.classList.remove("visible");
-
-    setTimeout(() => {
-      layout.classList.add("no-gap");
-    }, 450);
   } else {
-    setTimeout(() => {
-      layout.classList.remove("no-gap");
-      nav.classList.remove("absolute")
-      document.body.classList.remove("mobile");
-    }, 0);
+    document.body.classList.remove("mobile");
   }
 }
 

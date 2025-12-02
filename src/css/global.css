@@ -8,6 +8,7 @@
 
   /* Spacing */
   --padding: 0.3125rem;
+  --gap: 0.3125rem;
 
   /* Borders */
   --border: 1px solid rgb(203, 203, 203);
@@ -32,12 +33,11 @@ body {
   display: grid;
   grid-template-areas:
     "header header"
-    "nav main"
+    "nav-main nav-main"
     "footer footer";
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: auto 1fr auto;
   gap: 5px;
-  transition: column-gap 0.3s ease;
 
   padding: var(--padding);
   height: 100dvh;
@@ -56,18 +56,26 @@ header {
   line-height: 1;
 }
 
+.nav-main {
+  grid-area: nav-main;
+  display: flex;
+  gap: var(--gap);
+  position: relative;
+}
+
 nav {
-  grid-area: nav;
+  min-width: 120px;
+  height: 100%;
   border: 1px solid var(--gray-4);
   padding: var(--padding);
   border-radius: var(--border-radius);
-  width: 120px;
   font-family: "Bebas Neue", sans-serif;
   font-size: 1.3rem;
   overflow-y: auto;
-
   background-color: #e8e8f3;
   z-index: 1;
+
+  transition: margin-left 1s ease;
 }
 
 nav li {
@@ -87,34 +95,23 @@ a {
 
 nav a[aria-current="page"] {
   color: var(--slate-7);
-  /* transition: padding-left 1s;
-  padding-left: 5px; */
 }
 
 main {
+  height: 100%;
+  left: 125px;
   border: 1px solid var(--gray-4);
-  padding: 0.3125rem;
+  padding: var(--padding);
   border-radius: var(--border-radius);
   overflow-y: auto;
-  margin-left: 0px;
-  transition: margin-left 1s ease;
-}
 
-nav,
-main {
-  transition: margin-left 1s ease;
-  will-change: transform;
-}
-
-/* MOBILE */
-body.mobile nav {
-  margin-left: -160px;
+  position: absolute;
+  transition: left 1s ease;
 }
 
 #app {
   opacity: 1;
   transition: opacity 0.25s ease;
-  will-change: opacity;
 }
 
 #app.fade {
@@ -142,21 +139,16 @@ svg {
 }
 
 @media (max-width: 700px) {
-  .layout.no-gap {
-    column-gap: 0;
+  body.mobile nav {
+  margin-left: -125px;
+}
+  
+  body.mobile nav.visible {
+    margin-left: 0;
   }
 
   main {
-    position: relative;
-  }
-
-  nav.absolute {
-    position: absolute;
-    top: 0;
-  }
-
-  body.mobile nav.visible {
-    margin-left: 0;
+    left: 0;
   }
 }
 
@@ -169,7 +161,7 @@ svg {
     padding-left: 5px;
   }
 
-  main {
-    margin-left: 0px;
+   main {
+    left: 125px;
   }
 }
