@@ -29,6 +29,16 @@ body {
   background-color: var(--background-color, #fff);
 }
 
+#loading-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.6); /* coloque a cor que quiser */
+  z-index: 99999;
+}
+
 .layout {
   display: grid;
   grid-template-areas:
@@ -76,6 +86,7 @@ nav {
   z-index: 1;
 
   transition: margin-left 1s ease;
+  position: absolute;
 }
 
 nav li {
@@ -105,12 +116,7 @@ main {
   border-radius: var(--border-radius);
   overflow-y: auto;
 
-  position: absolute;
-  transition: left 1s ease;
-}
-
-#app {
-  
+  transition: margin-left 1s ease;
 }
 
 footer {
@@ -144,6 +150,7 @@ svg {
 
   main {
     left: 0;
+    width: 100%;
   }
 }
 
@@ -157,6 +164,7 @@ svg {
   }
 
    main {
-    left: 125px;
+    margin-left: 125px;
+    width: 100%;
   }
 }

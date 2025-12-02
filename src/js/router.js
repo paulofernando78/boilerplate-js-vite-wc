@@ -84,9 +84,6 @@ export async function renderRoute() {
   // Increase token to invalidate older navigations (race condition protection)
   const token = ++renderToken;
 
-  const loadingElement = document.createElement("wc-loading");
-  app.replaceChildren(loadingElement);
-
   // Dynamically import the page module (code-splitting)
   // This may briefly block the event loop
   await load();

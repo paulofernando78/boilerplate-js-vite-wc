@@ -4,14 +4,6 @@ class FourOhFour extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
-
-    const style = document.createElement("style");
-    style.textContent = styleImports;
-    this.shadowRoot.appendChild(style);
-
-    this.container = document.createElement("div");
-    this.container.className = "container";
-    this.shadowRoot.appendChild(this.container);
   }
 
   connectedCallback() {
@@ -20,9 +12,15 @@ class FourOhFour extends HTMLElement {
 
   render() {
     /* html */
-    this.container.innerHTML = `
-      <h1>404</h1>
-      <h2>Page Not Found</h2>
+    this.shadowRoot.innerHTML = `
+      <style>
+        ${styleImports}
+      </style>
+      <div class="not-found">
+        <h1>404</h1>
+        <h2>Page Not Found</h2>
+      </div>
+      
     `;
   }
 }
