@@ -1,22 +1,36 @@
 import "@js/app.js";
 import "@css/styles.css";
 
+// Restore Theme on Page Load
+const savedTheme = localStorage.getItem("theme") || "light";
+document.body.setAttribute("data-theme", savedTheme);
+
 // Component Button
 import Button from "./components/atoms/Button";
 customElements.define("wc-button", Button);
 
 // Dark Mode
 const darkModeBtn = document.querySelector("wc-button[icon='darkMode']");
+if (darkModeBtn) {
+  darkModeBtn.setAttribute("icon", savedTheme === "dark" ? "lightMode" : "darkMode"
+  )
+}
 
 darkModeBtn.addEventListener("click", () => {
   const current = document.body.getAttribute("data-theme");
+
   // Is current theme dark? When clicked use light, otherwise use dark
   const newTheme = current === "dark" ? "light" : "dark";
+  
+  // Apply Theme
   document.body.setAttribute("data-theme", newTheme);
+
+  //Save Theme
+  localStorage.setItem("theme", newTheme)
+
   // Will New theme be dark? If yes, use lightMode, otherwise use darkMode
   darkModeBtn.setAttribute(
-    "icon",
-    newTheme === "dark" ? "lightMode" : "darkMode"
+    "icon", newTheme === "dark" ? "lightMode" : "darkMode"
   );
 });
 

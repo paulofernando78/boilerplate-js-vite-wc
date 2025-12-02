@@ -82,7 +82,7 @@ nav {
   font-family: "Bebas Neue", sans-serif;
   font-size: 1.3rem;
   overflow-y: auto;
-  background-color: #e8e8f3;
+  background-color: var(--background-color);
   z-index: 1;
 
   transition: margin-left 1s ease;
