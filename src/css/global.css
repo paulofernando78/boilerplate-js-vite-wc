@@ -119,8 +119,14 @@ main {
   transition: margin-left 1s ease;
 }
 
-#app {
+#app > .page {
   height: 100%;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+#app.is-fading > .page {
+  opacity: 0;
 }
 
 footer {

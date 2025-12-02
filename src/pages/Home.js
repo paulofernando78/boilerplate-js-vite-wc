@@ -24,7 +24,7 @@ class Home extends HTMLElement {
             <li>• Web Components</li>
           </ul>
         </div>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisici</p>
+        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Consequuntur quis quisquam ipsum qui, minus odio quam vero sunt harum cumque optio pariatur sint, ducimus ullam delectus omnis aliquid possimus! Perferendis.</p>
       </section>
     `;
   }

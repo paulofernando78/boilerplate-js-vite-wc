@@ -1,6 +1,7 @@
 const css = /* css */ `
     .loading-container {
       height: 100%;
+      padding: 1rem;
       display: flex;
       flex-direction: column;
       align-items: center;

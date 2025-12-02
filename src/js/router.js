@@ -1,4 +1,4 @@
-import "../js/components/atoms/Loading.js"
+import "../js/components/atoms/Loading.js";
 
 /*
  * ROUTE TABLE
@@ -22,7 +22,7 @@ const routes = {
   "/contact": {
     tag: "wc-contact",
     load: () => import("../pages/Contact.js"),
-  }
+  },
 };
 
 /*
@@ -78,16 +78,41 @@ export async function renderRoute() {
   // Increase token to invalidate older navigations (race condition protection)
   const token = ++renderToken;
 
+
+  // 1) Fade OUT do conteúdo atual
+  app.classList.add("is-fading");
+
+ // aguarda a transição OU 300ms caso transitionend não dispare
+await Promise.race([
+  new Promise((resolve) => {
+    const onEnd = () => {
+      app.removeEventListener("transitionend", onEnd);
+      resolve();
+    };
+    app.addEventListener("transitionend", onEnd);
+  }),
+  new Promise((resolve) => setTimeout(resolve, 350))
+]);
+
+  // 2) Coloca o loading (já com opacity 0)
   app.replaceChildren(document.createElement("wc-loading"));
 
-  await load()
+  // garante um frame para o loading montar
+  await new Promise(requestAnimationFrame);
 
-  // If the user navigated again during import, cancel this render
+  // 3) Carrega a página nova
+  await load();
   if (token !== renderToken) return;
 
-  // Create the new page's Web Component and replace the #app content
   const element = document.createElement(tag);
+  element.classList.add("page")
   app.replaceChildren(element);
+
+
+  // 4) Fade IN do novo conteúdo
+  // remove a classe num próximo frame pra animação disparar certinho
+  await new Promise(requestAnimationFrame);
+  app.classList.remove("is-fading");
 
   updateAriaCurrent();
   window.scrollTo({ top: 0, behavior: "smooth" });
