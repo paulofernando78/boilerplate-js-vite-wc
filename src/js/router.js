@@ -86,6 +86,9 @@ export async function renderRoute() {
   // Increase token to invalidate older navigations (race condition protection)
   const token = ++renderToken;
 
+  const loadingElement = document.createElement("wc-loading");
+  app.replaceChildren(loadingElement);
+
   const FADE_DURATION = 250;
 
   // Start FADE-OUT animation by adding the CSS class
