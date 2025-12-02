@@ -50,14 +50,10 @@ nav.addEventListener("click", (e) => {
 
 // Breakpoint animation
 const mq = window.matchMedia("(max-width: 700px)");
-const layout = document.querySelector(".layout");
 
 function handleBreakpoint(e) {
   if (e.matches) {
-    document.body.classList.add("mobile");
     nav.classList.remove("visible");
-  } else {
-    document.body.classList.remove("mobile");
   }
 }
 

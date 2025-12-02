@@ -154,11 +154,11 @@ svg {
 }
 
 @media (max-width: 700px) {
-  body.mobile nav {
+  nav {
     margin-left: -125px;
   }
 
-  body.mobile nav.visible {
+  nav.visible {
     margin-left: 0;
   }
 
