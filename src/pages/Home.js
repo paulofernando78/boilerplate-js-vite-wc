@@ -1,5 +1,11 @@
 import styleImports from "@css/styles.css?inline";
 
+const style = /* css */ `
+  h2 {
+    font-size: 1.8rem
+  }
+`
+
 class Home extends HTMLElement {
   constructor() {
     super();
@@ -13,7 +19,10 @@ class Home extends HTMLElement {
   render() {
     /* html */
     this.shadowRoot.innerHTML = `
-      <style>${styleImports}</style>
+      <style>
+        ${styleImports}
+        ${style}
+      </style>
       <section class="line-break home-container" aria-label="Boilerplate">
         <div>
           <h1 class="page"><b>CSR</b> </h1>
