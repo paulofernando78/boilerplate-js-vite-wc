@@ -1,8 +1,35 @@
 import styleImports from "@css/styles.css?inline";
 
-const style = /* css */`
+const style = /* css */ `
   :host {
-    display: inline-block;
+    display: grid;
+    place-items: center;
+  }
+
+  .ham_menu {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .ham_menu span {
+    width: 25px;
+    height: 3px;
+    background: currentColor;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+
+  .line1-active {
+    transform: translateY(7px) rotate(45deg);
+  }
+
+  .line2-active {
+    opacity: 0;
+  }
+
+  .line3-active {
+    transform: translateY(-7px) rotate(-45deg);
   }
 
   :host([icon="darkMode"]) svg,
@@ -32,9 +59,9 @@ const style = /* css */`
       transform: scale(1);
     }
   }
-`
+`;
 
-import { menu, lightMode, darkMode } from "../../../assets/images/svg-imports";
+import { lightMode, darkMode } from "../../../assets/images/svg-imports";
 
 class Button extends HTMLElement {
   static get observedAttributes() {
@@ -45,7 +72,7 @@ class Button extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
 
-    this.shadowRoot.innerHTML = `
+    this.shadowRoot.innerHTML = /* html*/ `
       <style>
         ${styleImports}
         ${style}
@@ -63,7 +90,7 @@ class Button extends HTMLElement {
       this.dispatchEvent(
         new CustomEvent("nav-click", {
           bubbles: true,
-          composed: true
+          composed: true,
         })
       );
     });
@@ -74,9 +101,29 @@ class Button extends HTMLElement {
   }
 
   updateIcon() {
-    const icons = { menu, lightMode, darkMode };
     const iconAttr = this.getAttribute("icon");
-    this.button.innerHTML = icons[iconAttr] || "";
+
+    if (iconAttr === "menu") {
+      this.button.innerHTML = /* html */ `
+        <div class="ham_menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      `;
+
+      const ham = this.shadowRoot.querySelector(".ham_menu");
+      const spans = ham.querySelectorAll("span");
+
+      this.button.addEventListener("click", () => {
+        spans[0].classList.toggle("line1-active");
+        spans[1].classList.toggle("line2-active");
+        spans[2].classList.toggle("line3-active");
+      });
+    } else {
+      const icons = { lightMode, darkMode };
+      this.button.innerHTML = icons[iconAttr] || "";
+    }
   }
 }
 
