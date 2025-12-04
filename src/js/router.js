@@ -81,7 +81,7 @@ export async function renderRoute() {
   // 1) Fade OUT do conteúdo atual
   app.classList.add("is-fading");
 
-  // aguarda a transição OU 300ms caso transitionend não dispare
+  // aguarda a transição OU 200ms caso transitionend não dispare
   await Promise.race([
     new Promise((resolve) => {
       const onEnd = () => {
@@ -90,7 +90,7 @@ export async function renderRoute() {
       };
       app.addEventListener("transitionend", onEnd);
     }),
-    new Promise((resolve) => setTimeout(resolve, 350)),
+    new Promise((resolve) => setTimeout(resolve, 200)),
   ]);
 
   // 2) Coloca o loading (já com opacity 0)

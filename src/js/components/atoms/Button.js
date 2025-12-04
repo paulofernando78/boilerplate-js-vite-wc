@@ -101,6 +101,15 @@ class Button extends HTMLElement {
     if (name === "icon") this.updateIcon();
   }
 
+  toggleHamIcon(state) {
+    const hamIcon = this.shadowRoot.querySelector(".ham_menu");
+    const spans = hamIcon.querySelectorAll("span");
+
+    spans[0].classList.toggle("line1-active", state);
+    spans[1].classList.toggle("line2-active", state);
+    spans[2].classList.toggle("line3-active", state);
+  }
+
   updateIcon() {
     const iconAttr = this.getAttribute("icon");
 
@@ -112,15 +121,6 @@ class Button extends HTMLElement {
           <span></span>
         </div>
       `;
-
-      const ham = this.shadowRoot.querySelector(".ham_menu");
-      const spans = ham.querySelectorAll("span");
-
-      this.button.addEventListener("click", () => {
-        spans[0].classList.toggle("line1-active");
-        spans[1].classList.toggle("line2-active");
-        spans[2].classList.toggle("line3-active");
-      });
     } else {
       const icons = { lightMode, darkMode };
       this.button.innerHTML = icons[iconAttr] || "";

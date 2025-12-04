@@ -12,8 +12,10 @@ customElements.define("wc-button", Button);
 // Dark Mode
 const darkModeBtn = document.querySelector("wc-button[icon='darkMode']");
 if (darkModeBtn) {
-  darkModeBtn.setAttribute("icon", savedTheme === "dark" ? "lightMode" : "darkMode"
-  )
+  darkModeBtn.setAttribute(
+    "icon",
+    savedTheme === "dark" ? "lightMode" : "darkMode"
+  );
 }
 
 darkModeBtn.addEventListener("click", () => {
@@ -21,16 +23,17 @@ darkModeBtn.addEventListener("click", () => {
 
   // Is current theme dark? When clicked use light, otherwise use dark
   const newTheme = current === "dark" ? "light" : "dark";
-  
+
   // Apply Theme
   document.body.setAttribute("data-theme", newTheme);
 
   //Save Theme
-  localStorage.setItem("theme", newTheme)
+  localStorage.setItem("theme", newTheme);
 
   // Will New theme be dark? If yes, use lightMode, otherwise use darkMode
   darkModeBtn.setAttribute(
-    "icon", newTheme === "dark" ? "lightMode" : "darkMode"
+    "icon",
+    newTheme === "dark" ? "lightMode" : "darkMode"
   );
 });
 
@@ -39,12 +42,14 @@ const nav = document.querySelector("nav");
 const navLinks = document.querySelectorAll("nav li a");
 
 menuBtn.addEventListener("nav-click", () => {
-  nav.classList.toggle("visible");
+  const isOpen = nav.classList.toggle("visible");
+  menuBtn.toggleHamIcon(isOpen);
 });
 
 nav.addEventListener("click", (e) => {
   if (e.target.tagName === "A") {
     nav.classList.remove("visible");
+    menuBtn.toggleHamIcon(false);
   }
 });
 
