@@ -110,8 +110,12 @@ a {
   transition: color 0.2s ease;
 }
 
+a:hover {
+  color: var(--slate-4)
+}
+
 nav a[aria-current="page"] {
-  color: var(--slate-7);
+  color: var(--slate-5);
 }
 
 main {
