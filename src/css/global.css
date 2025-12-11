@@ -169,10 +169,6 @@ svg {
   nav.visible {
     margin-left: 0;
   }
-
-  main {
-    left: 0;
-  }
 }
 
 @media (min-width: 701px) {
